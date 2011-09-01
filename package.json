@@ -1,0 +1,5 @@
+{
+    "name" : "cnae_command_line",
+    "main" : "./socketEdition.js"
+}
+
