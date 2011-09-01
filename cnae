@@ -2,9 +2,9 @@
 var net = require('net');
 
 if(process.argv[2] && process.argv[3]){
-  var appName = process.argv[2];
-  var action = process.argv[3];
-  var command;
+  var appName = process.argv[2];  //应用名
+  var action = process.argv[3]; //操作
+  var command;  //发送的命令
   switch(action){
     case "start":
     case "restart":
@@ -18,7 +18,7 @@ if(process.argv[2] && process.argv[3]){
       command = action + " " + appName + " " + line + "\n";
       break;
     default:
-      console.log("error: undefined command!\nPlease enter the right command!");
+      console.log("Error: undefined command!\nPlease enter the right command!");
       return;
   }
 
@@ -29,12 +29,14 @@ if(process.argv[2] && process.argv[3]){
   console.log("sending command...");
   socket.write(command);
   socket.on('data', function(data){
+    //消除上面一行，即sending command...这句
+    //something
     data = "" + data;
     if(action != "stdout" && action != "stderr"){
       data = eval('('+data+')');
     }
     if(data.status == "error"){ //没有成功执行则输出错误信息
-      console.log("error: " + data.msg);
+      console.log("Error: " + data.msg);
     }
     else{
       if(data.msg){ //start stop restart成功时输出成功的信息
@@ -53,7 +55,7 @@ if(process.argv[2] && process.argv[3]){
     socket.destroy(); //销毁socket
   });
 }
-else{
+else{ //如果参数不齐全，提示输入格式错误
   console.log("Error: incorrect format");
   console.log("Please enter: cnae [appName] [action]");
 }
