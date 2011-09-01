@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var net = require('net');
 
 if(process.argv[2] && process.argv[3]){
@@ -17,7 +18,8 @@ if(process.argv[2] && process.argv[3]){
       command = action + " " + appName + " " + line + "\n";
       break;
     default:
-    console.log("error: undefined command! Please enter the right command!");
+      console.log("error: undefined command!\nPlease enter the right command!");
+      return;
   }
 
   var socket = new net.Socket();
@@ -45,5 +47,5 @@ if(process.argv[2] && process.argv[3]){
 }
 else{
   console.log("Error: incorrect format");
-  console.log("Please enter: node socketEdition.js [appName] [action]");
+  console.log("Please enter: node cnae [appName] [action]");
 }
