@@ -13,8 +13,8 @@ if(process.argv[2] && process.argv[3]){
       break;
     case "stdout":
     case "stderr":
-      var line = process.argv[4] || 10;
-      command = action + " " + appName + " " + process.argv[4] + "\n";
+      var line = process.argv[4] || '10';
+      command = action + " " + appName + " " + line + "\n";
       break;
     default:
     console.log("error: undefined command! Please enter the right command!");
