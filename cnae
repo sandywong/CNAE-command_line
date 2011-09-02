@@ -22,9 +22,7 @@ if(process.argv[2] && process.argv[3]){
       return;
   }
 
-  var socket = new net.Socket();
-
-  socket.connect(1128);
+  var socket = net.createConnection(1128);
 
   console.log("sending command...");
   socket.write(command);
@@ -52,7 +50,7 @@ if(process.argv[2] && process.argv[3]){
         console.log(data);
       }
     }
-    socket.destroy(); //销毁socket
+    socket.end(); //销毁socket
   });
 }
 else{ //如果参数不齐全，提示输入格式错误
