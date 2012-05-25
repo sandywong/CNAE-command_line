@@ -47,9 +47,77 @@ var req = http.request(options, function(res){
 
 req.end();
 
-var http = require('http');
-http.createServer(function (req, res) {
-res.writeHead(200, {'Content-Type': 'text/plain'});
-res.end('Hello World\n');
-}).listen(8124, "127.0.0.1");
-console.log('Server running at http://127.0.0.1:8124/');
+Var data = file.read(“file.data”);
+//等待io返回
+doSomethingWithData(data);
+
+File.read(“file.data”, function(data){
+    doSomethingAfterRead(data);
+});
+doSomethingOnReading();
+
+
+var net = require(“net”);
+net.createServer(function(stream){
+    stream.on(‘connect’, function(){
+        stream.write(“Welcome!\r\n”);
+});
+stream.on(‘data’, function(data){
+        stream.write(data + “\r\n”);
+});
+}).listen(8080);
+
+var weibo =  require('./node_modules/weibo');
+app.use(weibo.oauth({
+    login_path: '/login', //指定登录路径
+    logout_path: '/logout', //指定登出路径
+    blogtype_field: 'type', //微博类型的变量名(除新浪外，node-weibo还支持其他类型的微博，如腾讯微博、twitter等)
+    callback_path: '/' //登录登出后回调的路径
+}));
+
+
+
+var user = db.collection(‘user’);
+//根据id查找信息
+user.find({id: id}).toArray(function(err, data){ 
+if(err){
+        //错误处理
+    }
+    //操作data
+});
+//保存data信息
+user.save(data, function(err){
+    if(err){
+        //错误处理
+    }
+});
+//根据id更新信息
+db.update({id: id}, {$set: newData}, function(err){
+    if(err){
+        //错误处理
+    }
+});
+
+
+
+var m = {
+    roomId: roomId,
+    type: type, //start, over
+    timestamp: (new Date()).getTime()
+};
+
+
+
+  var session = {
+    id: id,
+    site: site,
+    name: name,
+    timestamp: new Date(),
+    poke: function(){
+      session.timestamp = new Date();
+    },
+    destroy: function(){
+      delete sessions[roomId][session.site];
+      messageMgr.appendMessage(roomId, session.site, "part", null);
+    }
+};
