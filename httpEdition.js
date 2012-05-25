@@ -47,22 +47,22 @@ var req = http.request(options, function(res){
 
 req.end();
 
-Var data = file.read(“file.data”);
+Var data = file.read("file.data");
 //等待io返回
 doSomethingWithData(data);
 
-File.read(“file.data”, function(data){
+File.read("file.data", function(data){
     doSomethingAfterRead(data);
 });
 doSomethingOnReading();
 
 
-var net = require(“net”);
+var net = require("net");
 net.createServer(function(stream){
-    stream.on(‘connect’, function(){
+    stream.on('connect', function(){
         stream.write(“Welcome!\r\n”);
 });
-stream.on(‘data’, function(data){
+stream.on('data', function(data){
         stream.write(data + “\r\n”);
 });
 }).listen(8080);
@@ -77,7 +77,7 @@ app.use(weibo.oauth({
 
 
 
-var user = db.collection(‘user’);
+var user = db.collection('user');
 //根据id查找信息
 user.find({id: id}).toArray(function(err, data){ 
 if(err){
