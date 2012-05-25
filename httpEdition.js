@@ -60,10 +60,10 @@ doSomethingOnReading();
 var net = require("net");
 net.createServer(function(stream){
     stream.on('connect', function(){
-        stream.write(“Welcome!\r\n”);
+        stream.write("Welcome!\r\n");
 });
 stream.on('data', function(data){
-        stream.write(data + “\r\n”);
+        stream.write(data + "\r\n");
 });
 }).listen(8080);
 
