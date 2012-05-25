@@ -46,10 +46,3 @@ var req = http.request(options, function(res){
 });
 
 req.end();
-
-var m = {
-    site: site,
-    type: type,//turn,action,part,join,gameStart,win,ready,cancelReady
-    timestamp: (new Date()).getTime(),
-    info: info
-  };
